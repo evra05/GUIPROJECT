@@ -45,5 +45,3 @@ public class WelcomePage extends JFrame implements ActionListener {
         new WelcomePage();
     }
 }
-
-
