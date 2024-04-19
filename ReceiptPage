@@ -1,0 +1,56 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ReceiptPage extends JFrame implements ActionListener 
+{
+    public ReceiptPage(String room, double pricePerNight, int night, double totalPrice, String id, String name)
+    {
+        // Calculate tax amount (6% of total price)
+        double taxRate = 0.06;
+        double taxAmount = totalPrice * taxRate;
+        
+        // Calculate total price including tax
+        double totalPriceWithTax = totalPrice + taxAmount;
+        
+        // Create receipt frame
+        setTitle("Receipt");
+        setSize(400, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        
+        // Create Panel
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        add(panel);
+        
+        // Create receipt text area
+        JTextArea receiptTextArea = new JTextArea("\n" + "Room Type : " + room + "\n" +
+                "Price per Night : " + pricePerNight + "\n" + " Nights: " + night + "\n" +
+                "Total Price (before tax): RM" + totalPrice + "\n" +
+                "Tax Rate: " + (taxRate * 100) + "%\n" +
+                "Tax Amount: RM" + taxAmount + "\n" +
+                "Total Price (incl. tax): RM" + totalPriceWithTax + "\n" +
+                "ID: " + id + "\n" +
+                "Name: " + name);
+
+        receiptTextArea.setEditable(false);
+        receiptTextArea.setBackground(Color.WHITE);
+        receiptTextArea.setFont(new Font("Arial", Font.PLAIN, 15));
+        panel.add(receiptTextArea, BorderLayout.CENTER);
+        receiptTextArea.append(String.format(" \n\n\n\n\n "));
+        receiptTextArea.append(String.format("------------- Thank you for using serviced apartment :) -------------"));
+        receiptTextArea.append(String.format(" \n "));
+        receiptTextArea.append(String.format("---------------------- Have a nice day! -----------------------"));
+        
+        // Create close button
+        JButton closeButton = new JButton("Close");
+        closeButton.addActionListener(this);
+        panel.add(closeButton, BorderLayout.SOUTH);
+        setVisible(true);
+    }// end of constructor
+    
+    public void actionPerformed(ActionEvent e) {
+        dispose();
+    }// end of method
+}
