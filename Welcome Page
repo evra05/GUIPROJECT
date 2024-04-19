@@ -1,0 +1,49 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+import java.util.regex.*;
+
+public class WelcomePage extends JFrame implements ActionListener {
+    private JButton startButton;
+    private ImageIcon logo;
+
+    public WelcomePage() {
+        setTitle("Welcome to ComfyCorner Serviced Accommodation");
+        setSize(500, 500);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Create a Panel
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        add(panel);
+        
+        // Create image icon logo
+        // Replace "path/to/SERVICED.png" with the actual path to your logo image
+        logo = new ImageIcon("/C:/Users/abdra/OneDrive/Desktop/Evra Java/SERVICED.png");
+        JLabel logoLabel = new JLabel(logo);
+        
+        // Create Start Button
+        startButton = new JButton("Start Booking");
+        startButton.addActionListener(this);
+
+        panel.add(startButton, BorderLayout.SOUTH);
+        panel.add(logoLabel, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == startButton) {
+            dispose();
+            new ReservationPage();
+        }
+    }
+
+    public static void main(String[] args) {
+        new WelcomePage();
+    }
+}
+
+
